@@ -1,0 +1,83 @@
+
+body {
+  margin: 0;
+  font-family: Arial;
+  background-color: #4d97ff;
+}
+
+.header {
+  text-align: center;
+  padding: 32px;
+}
+
+#container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+ul.topnav {
+  font-weight: bold;
+  font-family: "Helvetica", Arial, sans-serif;
+  list-style-type: none;
+  overflow: hidden;
+  background-color: #4d97ff;
+}
+
+ul.topnav li {float:left}
+
+ul.topnav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #4280d7;}
+
+@media screen and (max-width: 700px) {
+  ul.topnav li {float: none;}
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+  max-width: 25%;
+}
+
+.column img {
+  margin-top: 0px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
+}
