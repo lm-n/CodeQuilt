@@ -66,8 +66,10 @@ app.get("/image/:projectId", function(req, res){
 	let projectId = req.params.projectId;
 	let requestURL = 'https://uploads.scratch.mit.edu/projects/thumbnails/'+ projectId;
 	Request(requestURL, {encoding:'binary'}, function (error, response) {
-		res.writeHead(200, {'Content-Type': 'image/png', 'Cache-Control': 'no-cache' });
-		res.end(response.body, 'binary');
+		if (response !== undefined){
+			res.writeHead(200, {'Content-Type': 'image/png', 'Cache-Control': 'no-cache' });
+			res.end(response.body, 'binary');
+		}
 	});
 });
 
