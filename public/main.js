@@ -1,6 +1,5 @@
 // When the user clicks the about, open the modal 
 $('#about a').click(function(){
-	console.log('here');
 	modal.style.display = "block";    
 });
 $('#close').click(function(){
@@ -69,7 +68,7 @@ function getAPIData(studio){
 }
 
 $(document).ready(function(){
-	//let studio = '27961716';
-	let studio = '27958137'; 
+	let studio = '27961716';
+	//let studio = '27958137'; 
 	getAPIData(studio);
 });
