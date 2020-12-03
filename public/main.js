@@ -1,17 +1,15 @@
 // When the user clicks the about, open the modal 
+let modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+let span = document.getElementsByClassName("close")[0];
+
 $('#about a').click(function(){
 	modal.style.display = "block";    
 });
 $('#close').click(function(){
 	modal.style.display = "none";  
 });
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -25,26 +23,25 @@ window.onclick = function(event) {
   }
 }
 
-
 let projects, cols = [];
 
 //Function to genrerate HTML string
 function makeQuilt(theData){
-	for (var i = 0; i < 4; i++) {
+	for (let i = 0; i < 4; i++) {
 		$('#quilt').append('<div class="column" id="column'+ i +'"></div>');
 	}
 
 	let column = 0;
 	let randomColor = Math.floor(Math.random()*16777215).toString(16);
-	$("#column0").append('<a href="https://scratch.mit.edu/studios/27961716/projects/" target="_blank" ><img src="codeQuilt3.png" style="width:100%;outline:2px dashed #' + randomColor + ';outline-offset: -10px;"></a>');
+	$("#column0").append('<a href="https://scratch.mit.edu/studios/27961716/projects/" target="_blank" ><img src="codeQuilt3.png" alt="a quilt where every patch is a scratch project" style="width:100%;outline:2px dashed #' + randomColor + ';outline-offset: -10px;"></a>');
 	column = 1
-	for (var i = 0; i < projects.length; i++) {
+	for (let i in projects) {
 		if (column === 4){
 			column = 0;
 		}
 		let randomColor = Math.floor(Math.random()*16777215).toString(16);
-		let projectId = projects[i]
-		$("#column" + column).append('<a href="https://scratch.mit.edu/projects/'+ projectId +'" target="_blank" ><img src="/image/'+ projectId +'.png" style="width:100%;outline:2px dashed #' + randomColor + ';outline-offset: -10px;"></a>');
+		//let projectId = projects[i]
+		$("#column" + column).append('<a href="https://scratch.mit.edu/projects/'+ i +'" target="_blank" ><img src="/image/'+ i +'.png" alt="' + projects[i] + ' Scratch project" style="width:100%;outline:2px dashed #' + randomColor + ';outline-offset: -10px;"></a>');
 		column++;
 	}
 }
@@ -60,7 +57,7 @@ function getAPIData(studio){
 			alert("Oh No! Try a refresh?");
 		},
 		success: function(data){
-			//console.log("WooHoo!");
+			//console.log(data);
 			projects = data;
 			makeQuilt();
 		}

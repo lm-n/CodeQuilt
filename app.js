@@ -2,7 +2,7 @@
 let express = require("express");
 let logger = require('morgan');
 let Request = require('request');
-let myStudio = [];
+let myStudio = {};
 let port = process.env.PORT || 3000;
 
 //Create an 'express' object
@@ -39,17 +39,8 @@ app.get("/api/:studio", function(req, res){
 			let theData = JSON.parse(body);
 			//for coded quilts only
 			for (let x = theData.length - 1; x >= 0; x--) {
-				let end = false;
-				for (let i = 0; i < myStudio.length; i++){
-					if (myStudio[i] === theData[x].id){
-						end = true;
-						break;
-					}
-				}
-				if (end === true){
-					break;
-				}else{
-					myStudio.unshift(theData[x].id);
+				if (!myStudio[theData[x].id]) {
+					myStudio[theData[x].id] = theData[x].title;
 				}
 			}
 			//console.log('studio includes:')
