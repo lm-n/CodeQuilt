@@ -30,20 +30,19 @@ function makeQuilt(theData){
 	for (let i = 0; i < 4; i++) {
 		$('#quilt').append('<div class="column" id="column'+ i +'"></div>');
 	}
-
-	let column = 0;
-	let randomColor = Math.floor(Math.random()*16777215).toString(16);
-	$("#column0").append('<a href="https://scratch.mit.edu/studios/27961716/projects/" target="_blank" ><img src="codeQuilt3.png" alt="a quilt where every patch is a scratch project" style="width:100%;outline:2px dashed #' + randomColor + ';outline-offset: -10px;"></a>');
-	column = 1
-	for (let i in projects) {
+	column = 1;
+	for (i in projects){
 		if (column === 4){
 			column = 0;
 		}
 		let randomColor = Math.floor(Math.random()*16777215).toString(16);
 		//let projectId = projects[i]
-		$("#column" + column).append('<a href="https://scratch.mit.edu/projects/'+ i +'" target="_blank" ><img src="/image/'+ i +'.png" alt="' + projects[i] + ' Scratch project" style="width:100%;outline:2px dashed #' + randomColor + ';outline-offset: -10px;"></a>');
+		$("#column" + column).prepend('<a href="https://scratch.mit.edu/projects/'+ i +'" target="_blank" ><img src="/image/'+ i +'.png" alt="' + projects[i] + ' Scratch project" style="width:100%;outline:2px dashed #' + randomColor + ';outline-offset: -10px;"></a>');
 		column++;
 	}
+	let randomColor = Math.floor(Math.random()*16777215).toString(16);
+	$("#column0").prepend('<a href="https://scratch.mit.edu/studios/27961716/projects/" target="_blank" ><img src="codeQuilt3.png" alt="a quilt where every patch is a scratch project" style="width:100%;outline:2px dashed #' + randomColor + ';outline-offset: -10px;"></a>');
+
 }
 
 //Function to get data via the server's JSON route
