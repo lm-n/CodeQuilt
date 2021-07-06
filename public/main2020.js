@@ -1,6 +1,3 @@
-let studio = '30053065';
-//let studio = '27961716';
-
 // When the user clicks the about, open the modal 
 let modal = document.getElementById("myModal");
 
@@ -44,14 +41,14 @@ function makeQuilt(theData){
 		column++;
 	}
 	let randomColor = Math.floor(Math.random()*16777215).toString(16);
-	$("#column0").prepend('<a href="https://scratch.mit.edu/studios/'+ studio +'/projects/" target="_blank" ><img src="codeQuilt3.png" alt="a quilt where every patch is a scratch project" style="width:100%;outline:2px dashed #' + randomColor + ';outline-offset: -10px;"></a>');
+	$("#column0").prepend('<a href="https://scratch.mit.edu/studios/27961716/projects/" target="_blank" ><img src="codeQuilt3.png" alt="a quilt where every patch is a scratch project" style="width:100%;outline:2px dashed #' + randomColor + ';outline-offset: -10px;"></a>');
 
 }
 
 //Function to get data via the server's JSON route
 function getAPIData(studio){
 	$.ajax({
-		url: '/api/' + studio,
+		url: '/api20/' + studio,
 		type: 'GET',
 		dataType: 'json',
 		error: function(data){
@@ -67,5 +64,7 @@ function getAPIData(studio){
 }
 
 $(document).ready(function(){
+	let studio = '27961716';
+	//let studio = '27958137'; 
 	getAPIData(studio);
 });

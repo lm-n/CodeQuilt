@@ -2,7 +2,7 @@
 let express = require("express");
 let logger = require('morgan');
 let Request = require('request');
-let myStudio = {
+let mystudio20 = {
 	"445884133":"We can code it",
 	"445884429":"Hour of Code Starter",
 	"445884716":"Hour of Code Starter remix",
@@ -117,6 +117,8 @@ let myStudio = {
 	"461847920":"Untitled",
 	"461915088":"No One Out Pizza's the Hut"
 };
+
+let myStudio = {};
 let port = process.env.PORT || 3000;
 
 //Create an 'express' object
@@ -142,6 +144,10 @@ app.get("/", function(req, res){
 	res.render('index');
 });
 
+app.get("/2020", function(req, res){
+	res.render('index2020');
+});
+
 //JSON Serving route
 app.get("/api/:studio", function(req, res){
 	//CORS enable this route - http://enable-cors.org/server.html
@@ -161,6 +167,28 @@ app.get("/api/:studio", function(req, res){
 			//console.log(myStudio);
 			//send all the data
 			res.json(myStudio);
+		}
+	});
+});
+
+app.get("/api20/:studio", function(req, res){
+	//CORS enable this route - http://enable-cors.org/server.html
+	res.header('Access-Control-Allow-Origin', "*");
+	let studioId = req.params.studio;
+	let requestURL = 'https://api.scratch.mit.edu/studios/' + studioId + '/projects?limit=40';
+	Request(requestURL, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			let theData = JSON.parse(body);
+			//for coded quilts only
+			for (let x = theData.length - 1; x >= 0; x--) {
+				if (!myStudio20[theData[x].id]) {
+					myStudio20[theData[x].id] = theData[x].title;
+				}
+			}
+			//console.log('studio includes:')
+			//console.log(myStudio20);
+			//send all the data
+			res.json(myStudio20);
 		}
 	});
 });
