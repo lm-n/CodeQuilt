@@ -2,7 +2,7 @@
 let express = require("express");
 let logger = require('morgan');
 let Request = require('request');
-let mystudio20 = {
+let myStudio20 = {
 	"445884133":"We can code it",
 	"445884429":"Hour of Code Starter",
 	"445884716":"Hour of Code Starter remix",
